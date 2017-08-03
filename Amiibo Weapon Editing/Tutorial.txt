@@ -1,0 +1,101 @@
+Proof that this works:
+https://www.youtube.com/watch?v=BeV4LNEHWgQ (E-Liter)
+https://www.youtube.com/watch?v=BO5QtPBSbu4 (Dynamo Roller)
+
+*Make sure you have the following:
+Geckiine (http://oatmealdome.me/geckiine/)
+SD Card
+GeckoDNet (https://github.com/Chadderz121/tcp-gecko-dotnet)
+Notepad++ (https://notepad-plus-plus.org/download/v7.4.2.html)
+A Static.pack (Links above for my premade-ones, if you do not have one.)
+SARCTools (https://github.com/NWPlayer123/WiiUTools/tree/master/SARCTools)
+
+
+1. If your Static.pack is already extracted, move onto step 2. 
+If it isn't, place SARCExtract and SARCpack in the same folder as your Static.Pack. Then, open a command prompt and type "SARCExtract.py Static.pack".
+Optionally, you could drag your Static.pack onto the .py file. 
+2. Now you should have a folder called "Static". Find the folder named "Parameter" inside of it. (Static\Parameter)
+3. Depending on the Weapon you'd like to change, locate one of the following .params files:
+If you're swapping the Hero Roller, find "RollerMission.params" (Inkling Boy Amiibo) and open it with NotePad++. (Right click it.)
+If you're swapping the Hero Charger, find "ChargeShotMission.params" (Inkling Girl Amiibo) and open it with NotePad++. (Right click it.)
+If you're swapping the HeroShot, find "NormalShotMsn0Lv0.params" (Squid Amiibo) and open it with NotePad++. (Right click it.)
+4. Then, find the weapon you'd like to swap it with.
+--Parameter Guide: Ripped from Povlur's Splatoon Weapon Hacking Guide--
+Splattershot // NormalShotNormal
+Splattershot Pro // NormalShotExpert
+Splattershot Jr. // NormalShotFirst
+N-ZAP // NormalShotQuickMiddle
+Splash-O-Matic // NormalShotPrecision
+Sploosh-O-Matic // NormalShotShort
+.52 Gal // NormalShotGravity
+.96 Gal // NormalShotHeavy
+Aerospray // NormalShotBlaze
+H3 Nozzlenose // NormalShotTripleMiddle
+L3 Nozzlenose // NormalShotTripleQuick
+Jet Squelcher // NormalShotLong
+Dual Squelcher // NormalShotQuickLong
+*Blaster // NormalShotExplosionMiddle
+*Range Blaster // NormalShotExplosionLong
+*Rapid Blaster // NormalShotExplosionLight
+*Rapid Blaster Pro // NormalShotExplosionLightLong
+*Luna Blaster // NormalShotExplosionShort
+Splat Roller // RollerNormal
+Dynamo Roller // RollerHeavy
+Carbon Roller // RollerCompact
+Inkbrush // RollerBrushMini
+Octobrush // RollerBrushNormal
+Splat Charger // ChargeShotNormal
+Splatterscope // ChargeShotNormalScope
+Squiffer // ChargeShotQuick
+E-Liter 3K - ChargeShotLong
+E-Liter 3K Scope // ChargeShotLongScope
+Bamboozler 14 MKs // ChargeShotLight
+=Slosher // BigBallStrong
+=Tri-Slosher // BigBallDiffusion
+=Sloshing Machine // BigBall??? (Launcher, IIRC)
+=Heavy Splatling // GatlingStandard
+=Mini Splatling // GatlingQuick
+=Hydra Splatling // GatlingHyper
+Then, open that file in NotePad++.
+*Blasters may not work, due to their being a separate file for their explosion. Try a different weapon instead.
+=Sloshers and Gatlings may not work, due to (afaik, from my testing) both HERO and NORMAL weapon counterparts have to be present.
+4b. It should look like this:
+http://prntscr.com/fswqis
+(Your parameter names will most likely be different than mine. As long as you have one of the parameter names for the Hero Weapons, and one for a normal weapon, you will be fine.)
+5. Use Ctrl + A on the parameter you want to use (let's say, ChargeShotLong.params, in this instance) and then press Ctrl + C to copy all of it.
+5b. Go to the other parameter file (let's say, ChargeShotMission,params, for instance) and press Ctrl + A, then Ctrl + V. 
+5c. Make sure the numbers and such on both files are the same, they should look identical if you did it correctly.
+6. Save the file you used Ctrl + V on. 
+7. After closing NotePad++, and double checking to make sure the changes were saved to one of the Hero weapons, run a command prompt in the folder and type "SARCPack.py Static"
+7b. You should get a file named "Static.sarc" after it is done. 
+--Before continuing, make sure you know how to use a Caffine Server, and already have a Geckiine.elf (iirc, that's what it's called) file in your SD Card where it should go. I WILL NOT assist with help regarding either of the two.--
+8. Start your Wii U, go to Loadiine.ovh, run the HBL, then launch Geckiine. Make sure your Caffine Server is running, and make sure it connects.
+8b. Launch Splatoon.
+9. If your Caffine Server has crashed, displaying; "Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host.", it means it crashed. This is a user error. Try redoing the process, or ONLY use the Static.Pack while launching Caffine. The other files may be the cause of the crash.
+10. Connect GeckoDNet, and go into the Shooting Range.
+10b. Go to the Memory Viewer tab and go to the following address: 106E46E8
+10c. Copy the value that's displayed there, then make the value an address. (For example, if the value is 12345678, use it as an address.)
+10d. Locate a value called "3F800000". Make sure your viewing mode is Hexadecimal. Next to the 3F800000 value, is a number. Turn on Auto Update and select the weapon whose params you edited earlier. (The normal one, such as the Dual Squelchers.)
+The value should change if it's the correct address.
+You may have to scroll down a bit to find it. 
+10e. Take mental note of the value you see next to the 3F800000. Write it down or something.
+11. Exit, and go to the amiibo box, then tap your amiibo and go into a level.
+11b. Go back to the "106E46E8" address in Memory Viewer. Take the value you see there and use it as an address. 
+11c. Locate the "3F800000" value from earlier. Next to it, you should see one of the following values:
+5B = Hero Shot
+5F = Hero Roller
+60 = Hero Charger
+Poke the value with the value from step 10e. It should change from 5B/5F/60 to the new value.
+DO NOT PRESS ZR. YOU WILL CRASH AND WILL HAVE TO RESTART YOUR GAME.
+12. Kill your player, or restart the challenge.
+12b. The weapon model should change into the correct weapon. If not, try poking again.
+13. Poke the value from earlier back (5B/5F/60). Doing so makes the game use the parameter file you modified earlier, giving the appearance of your changed weapon.
+Your weapon should now have the look and fire like the weapon you changed it to be.
+Fairly elaborate swap for ya. <3
+
+(Note: Everytime you go into a different Amiibo Level for the same Amiibo, you have to redo steps 11b. and onward.)
+
+**Pre-Edited Static.packs can be found in this folder for usage!**
+
+-Red
+
